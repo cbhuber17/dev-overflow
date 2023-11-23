@@ -1,6 +1,6 @@
 # Dev Overflow
 
-A StackOverflow variant bulit using NextJS 14, Mongo, Tailwind CSS, React, and much more...
+A StackOverflow variant built using NextJS 14, Mongo, Tailwind CSS, React, and much more...
 
 # TODO:
 
