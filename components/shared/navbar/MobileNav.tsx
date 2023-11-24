@@ -23,7 +23,7 @@ const NavContent = () => {
           (pathname.includes(item.route) && item.route.length > 1) ||
           pathname === item.route;
 
-        // TODO
+        // TODO: Profile from LeftSidebar.tsx, display only when logged in
 
         return (
           // asChild delegates the rendering of a component to its single child element.
