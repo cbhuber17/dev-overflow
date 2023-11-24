@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Theme from "./Theme";
-// import MobileNav from './MobileNav'
+import MobileNav from "./MobileNav";
 // import GlobalSearch from '../search/GlobalSearch'
 
 const Navbar = () => {
@@ -41,7 +41,7 @@ const Navbar = () => {
           />
         </SignedIn>
 
-        {/* <MobileNav /> */}
+        <MobileNav />
       </div>
     </nav>
   );
