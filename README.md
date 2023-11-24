@@ -4,4 +4,4 @@ A StackOverflow variant built using NextJS 14, Mongo, Tailwind CSS, React, and m
 
 # TODO:
 
--
+- Check TODOs
