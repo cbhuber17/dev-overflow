@@ -3,14 +3,20 @@
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import { connectToDatabase } from "../mongoose"
-// import { CreateQuestionParams, DeleteQuestionParams, EditQuestionParams, GetQuestionByIdParams, GetQuestionsParams, QuestionVoteParams, RecommendedParams } from "./shared.types";
+import { CreateQuestionParams,
+    GetQuestionsParams,
+    //  DeleteQuestionParams,
+    // EditQuestionParams,
+    // GetQuestionByIdParams,
+    // GetQuestionsParams,
+    // QuestionVoteParams,
+    // RecommendedParams
+         } from "./shared.types";
 import User from "@/database/user.model";
 import { revalidatePath } from "next/cache";
 // import Answer from "@/database/answer.model";
 // import Interaction from "@/database/interaction.model";
-// import { FilterQuery } from "mongoose";
-
-/*
+import { FilterQuery } from "mongoose";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -64,10 +70,8 @@ export async function getQuestions(params: GetQuestionsParams) {
   }
 }
 
-*/
 
-// export async function createQuestion(params: CreateQuestionParams) {
-export async function createQuestion(params: any) {
+export async function createQuestion(params: CreateQuestionParams) {
   try {
     connectToDatabase();
 
@@ -110,6 +114,7 @@ export async function createQuestion(params: any) {
     // Increment author's reputation by +5 for creating a question
     await User.findByIdAndUpdate(author, { $inc: { reputation: 5 }})
 
+    // Update UI when DB updates
     revalidatePath(path)
   } catch (error) {
     console.log(error);

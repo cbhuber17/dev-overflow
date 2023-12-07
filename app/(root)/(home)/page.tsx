@@ -6,10 +6,10 @@ import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
-// import {
-//   getQuestions,
-//   getRecommendedQuestions,
-// } from "@/lib/actions/question.action";
+import {
+  getQuestions,
+  //   getRecommendedQuestions,
+} from "@/lib/actions/question.action";
 import { SearchParamsProps } from "@/types";
 import Link from "next/link";
 
@@ -39,52 +39,12 @@ export default async function Home({ searchParams }: SearchParamsProps) {
   //     };
   //   }
   // } else {
-  //   result = await getQuestions({
-  //     searchQuery: searchParams.q,
-  //     filter: searchParams.filter,
-  //     page: searchParams.page ? +searchParams.page : 1,
-  //   });
+  const result = await getQuestions({
+    searchQuery: searchParams.q,
+    filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
+  });
   // }
-
-  // Temporary
-  const result = {
-    questions: [
-      {
-        _id: "1",
-        title: "Cascading deletes in SQL Alchemy.",
-        tags: [
-          { _id: "1", name: "python" },
-          { _id: "2", name: "sql" },
-        ],
-        author: {
-          _id: "1",
-          name: "Bill Caesar",
-          picture: "",
-          clerkId: "abcd",
-        },
-        upvotes: ["10"],
-        views: 100,
-        answers: [{ num: 2 }],
-        createdAt: new Date(2023, 8, 2),
-      },
-      {
-        _id: "2",
-        title: "How to center a div",
-        tags: [{ _id: "3", name: "css" }],
-        author: {
-          _id: "2",
-          name: "James Frank",
-          picture: "",
-          clerkId: "efgh",
-        },
-        upvotes: ["12"],
-        views: 25,
-        answers: [{ num: 1 }],
-        createdAt: new Date(2023, 10, 12),
-      },
-    ],
-    isNext: false,
-  };
 
   return (
     <>
