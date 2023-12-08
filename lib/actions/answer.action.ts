@@ -5,8 +5,8 @@ import { connectToDatabase } from "../mongoose";
 import { 
     // AnswerVoteParams,
     CreateAnswerParams,
+    GetAnswersParams,
     // DeleteAnswerParams,
-    // GetAnswersParams
  } from "./shared.types";
 import Question from "@/database/question.model";
 import { revalidatePath } from "next/cache";
@@ -45,7 +45,6 @@ export async function createAnswer(params: CreateAnswerParams) {
   }
 }
 
-/*
 export async function getAnswers(params: GetAnswersParams) {
   try {
     connectToDatabase();
@@ -92,6 +91,8 @@ export async function getAnswers(params: GetAnswersParams) {
     throw error;
   }
 }
+
+/*
 
 export async function upvoteAnswer(params: AnswerVoteParams) {
   try {
