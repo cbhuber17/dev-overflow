@@ -1,13 +1,13 @@
 "use server"
 
-// import { FilterQuery } from "mongoose";
+import { FilterQuery } from "mongoose";
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
 import Question from "@/database/question.model";
 import { revalidatePath } from "next/cache";
 import { CreateUserParams,
    DeleteUserParams,
-   // GetAllUsersParams,
+   GetAllUsersParams,
    // GetSavedQuestionsParams,
    // GetUserByIdParams,
    // GetUserStatsParams,
@@ -97,7 +97,7 @@ export async function deleteUser(params: DeleteUserParams) {
   }
 }
 
-/*
+
 
 export async function getAllUsers(params: GetAllUsersParams) {
   try {
@@ -146,6 +146,8 @@ export async function getAllUsers(params: GetAllUsersParams) {
     throw error;
   }
 }
+
+/*
 
 export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
   try {
