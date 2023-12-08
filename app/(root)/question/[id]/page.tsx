@@ -1,7 +1,7 @@
 import Answer from "@/components/forms/Answer";
 // import AllAnswers from "@/components/shared/AllAnswers";
 import Metric from "@/components/shared/Metric";
-// import ParseHTML from "@/components/shared/ParseHTML";
+import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
 // import Votes from "@/components/shared/Votes";
 import { getQuestionById } from "@/lib/actions/question.action";
@@ -84,7 +84,7 @@ const Page = async ({ params, searchParams }: any) => {
         />
       </div>
 
-      {/* <ParseHTML data={result.content} /> */}
+      <ParseHTML data={result.content} />
 
       <div className="mt-8 flex flex-wrap gap-2">
         {result.tags.map((tag: any) => (
