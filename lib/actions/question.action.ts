@@ -7,7 +7,7 @@ import { CreateQuestionParams,
     GetQuestionsParams,
     //  DeleteQuestionParams,
     // EditQuestionParams,
-    // GetQuestionByIdParams,
+    GetQuestionByIdParams,
     // GetQuestionsParams,
     // QuestionVoteParams,
     // RecommendedParams
@@ -121,7 +121,7 @@ export async function createQuestion(params: CreateQuestionParams) {
   }
 }
 
-/*
+
 
 export async function getQuestionById(params: GetQuestionByIdParams) {
   try {
@@ -140,6 +140,7 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
   }
 }
 
+/*
 export async function upvoteQuestion(params: QuestionVoteParams) {
   try {
     connectToDatabase();
