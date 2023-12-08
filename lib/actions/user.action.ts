@@ -3,7 +3,17 @@
 // import { FilterQuery } from "mongoose";
 import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose"
-// import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, GetUserStatsParams, ToggleSaveQuestionParams, UpdateUserParams } from "./shared.types";
+import Question from "@/database/question.model";
+import { revalidatePath } from "next/cache";
+import { CreateUserParams,
+   DeleteUserParams,
+   // GetAllUsersParams,
+   // GetSavedQuestionsParams,
+   // GetUserByIdParams,
+   // GetUserStatsParams,
+   // ToggleSaveQuestionParams,
+   UpdateUserParams 
+   } from "./shared.types";
 // import { revalidatePath } from "next/cache";
 // import Question from "@/database/question.model";
 // import Tag from "@/database/tag.model";
@@ -25,7 +35,6 @@ export async function getUserById(params: any) {
     throw error;
   }
 }
-/*
 export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
@@ -87,6 +96,8 @@ export async function deleteUser(params: DeleteUserParams) {
     throw error;
   }
 }
+
+/*
 
 export async function getAllUsers(params: GetAllUsersParams) {
   try {
