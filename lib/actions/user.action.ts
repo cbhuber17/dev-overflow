@@ -8,12 +8,13 @@ import { revalidatePath } from "next/cache";
 import { CreateUserParams,
    DeleteUserParams,
    GetAllUsersParams,
-   // GetSavedQuestionsParams,
+   GetSavedQuestionsParams,
    // GetUserByIdParams,
    // GetUserStatsParams,
    ToggleSaveQuestionParams,
    UpdateUserParams 
    } from "./shared.types";
+import { Tag } from "lucide-react";
 // import { revalidatePath } from "next/cache";
 // import Question from "@/database/question.model";
 // import Tag from "@/database/tag.model";
@@ -183,9 +184,6 @@ export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
   }
 }
 
-/*
-
-
 export async function getSavedQuestions(params: GetSavedQuestionsParams) {
   try {
     connectToDatabase();
@@ -251,6 +249,8 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
     throw error;
   }
 }
+
+/*
 
 export async function getUserInfo(params: GetUserByIdParams) {
   try {
