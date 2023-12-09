@@ -9,7 +9,7 @@ import { CreateQuestionParams,
     // EditQuestionParams,
     GetQuestionByIdParams,
     // GetQuestionsParams,
-    // QuestionVoteParams,
+    QuestionVoteParams,
     // RecommendedParams
          } from "./shared.types";
 import User from "@/database/user.model";
@@ -140,7 +140,6 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
   }
 }
 
-/*
 export async function upvoteQuestion(params: QuestionVoteParams) {
   try {
     connectToDatabase();
@@ -223,6 +222,8 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
     throw error;
   }
 }
+
+/*
 
 export async function deleteQuestion(params: DeleteQuestionParams) {
   try {

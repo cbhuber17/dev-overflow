@@ -3,7 +3,7 @@
 import Answer from "@/database/answer.model";
 import { connectToDatabase } from "../mongoose";
 import { 
-    // AnswerVoteParams,
+    AnswerVoteParams,
     CreateAnswerParams,
     GetAnswersParams,
     // DeleteAnswerParams,
@@ -92,7 +92,6 @@ export async function getAnswers(params: GetAnswersParams) {
   }
 }
 
-/*
 
 export async function upvoteAnswer(params: AnswerVoteParams) {
   try {
@@ -176,6 +175,9 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
     throw error;
   }
 }
+
+/*
+
 
 export async function deleteAnswer(params: DeleteAnswerParams) {
   try {
