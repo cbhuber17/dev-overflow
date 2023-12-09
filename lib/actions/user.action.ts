@@ -11,7 +11,7 @@ import { CreateUserParams,
    // GetSavedQuestionsParams,
    // GetUserByIdParams,
    // GetUserStatsParams,
-   // ToggleSaveQuestionParams,
+   ToggleSaveQuestionParams,
    UpdateUserParams 
    } from "./shared.types";
 // import { revalidatePath } from "next/cache";
@@ -147,7 +147,6 @@ export async function getAllUsers(params: GetAllUsersParams) {
   }
 }
 
-/*
 
 export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
   try {
@@ -183,6 +182,9 @@ export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
     throw error;
   }
 }
+
+/*
+
 
 export async function getSavedQuestions(params: GetSavedQuestionsParams) {
   try {
