@@ -9,16 +9,13 @@ import { CreateUserParams,
    DeleteUserParams,
    GetAllUsersParams,
    GetSavedQuestionsParams,
-   // GetUserByIdParams,
-   // GetUserStatsParams,
+   GetUserByIdParams,
+   GetUserStatsParams,
    ToggleSaveQuestionParams,
    UpdateUserParams 
    } from "./shared.types";
-import { Tag } from "lucide-react";
-// import { revalidatePath } from "next/cache";
-// import Question from "@/database/question.model";
-// import Tag from "@/database/tag.model";
-// import Answer from "@/database/answer.model";
+import Answer from "@/database/answer.model";
+import Tag from "@/database/tag.model";
 // import { BadgeCriteriaType } from "@/types";
 // import { assignBadges } from "../utils";
 
@@ -250,7 +247,6 @@ export async function getSavedQuestions(params: GetSavedQuestionsParams) {
   }
 }
 
-/*
 
 export async function getUserInfo(params: GetUserByIdParams) {
   try {
@@ -267,51 +263,51 @@ export async function getUserInfo(params: GetUserByIdParams) {
     const totalQuestions = await Question.countDocuments({ author: user._id })
     const totalAnswers = await Answer.countDocuments({ author: user._id });
 
-    const [questionUpvotes] = await Question.aggregate([
-      { $match: { author: user._id }},
-      { $project: {
-        _id: 0, upvotes: { $size: "$upvotes" }
-      }},
-      { $group: {
-        _id: null,
-        totalUpvotes: { $sum: "$upvotes" }
-      }}
-    ])
+    // const [questionUpvotes] = await Question.aggregate([
+    //   { $match: { author: user._id }},
+    //   { $project: {
+    //     _id: 0, upvotes: { $size: "$upvotes" }
+    //   }},
+    //   { $group: {
+    //     _id: null,
+    //     totalUpvotes: { $sum: "$upvotes" }
+    //   }}
+    // ])
 
-    const [answerUpvotes] = await Answer.aggregate([
-      { $match: { author: user._id }},
-      { $project: {
-        _id: 0, upvotes: { $size: "$upvotes" }
-      }},
-      { $group: {
-        _id: null,
-        totalUpvotes: { $sum: "$upvotes" }
-      }}
-    ])
+    // const [answerUpvotes] = await Answer.aggregate([
+    //   { $match: { author: user._id }},
+    //   { $project: {
+    //     _id: 0, upvotes: { $size: "$upvotes" }
+    //   }},
+    //   { $group: {
+    //     _id: null,
+    //     totalUpvotes: { $sum: "$upvotes" }
+    //   }}
+    // ])
 
-    const [questionViews] = await Answer.aggregate([
-      { $match: { author: user._id }},
-      { $group: {
-        _id: null,
-        totalViews: { $sum: "$views" }
-      }}
-    ])
+    // const [questionViews] = await Answer.aggregate([
+    //   { $match: { author: user._id }},
+    //   { $group: {
+    //     _id: null,
+    //     totalViews: { $sum: "$views" }
+    //   }}
+    // ])
 
-    const criteria = [
-      { type: 'QUESTION_COUNT' as BadgeCriteriaType, count: totalQuestions },
-      { type: 'ANSWER_COUNT' as BadgeCriteriaType, count: totalAnswers },
-      { type: 'QUESTION_UPVOTES' as BadgeCriteriaType, count: questionUpvotes?.totalUpvotes || 0 },
-      { type: 'ANSWER_UPVOTES' as BadgeCriteriaType, count: answerUpvotes?.totalUpvotes || 0 },
-      { type: 'TOTAL_VIEWS' as BadgeCriteriaType, count: questionViews?.totalViews || 0 },
-    ]
+    // const criteria = [
+    //   { type: 'QUESTION_COUNT' as BadgeCriteriaType, count: totalQuestions },
+    //   { type: 'ANSWER_COUNT' as BadgeCriteriaType, count: totalAnswers },
+    //   { type: 'QUESTION_UPVOTES' as BadgeCriteriaType, count: questionUpvotes?.totalUpvotes || 0 },
+    //   { type: 'ANSWER_UPVOTES' as BadgeCriteriaType, count: answerUpvotes?.totalUpvotes || 0 },
+    //   { type: 'TOTAL_VIEWS' as BadgeCriteriaType, count: questionViews?.totalViews || 0 },
+    // ]
 
-    const badgeCounts = assignBadges({ criteria });
+    // const badgeCounts = assignBadges({ criteria });
 
     return {
       user,
       totalQuestions,
       totalAnswers,
-      badgeCounts,
+      // badgeCounts,
       reputation: user.reputation,
     }    
   } catch (error) {
@@ -319,6 +315,7 @@ export async function getUserInfo(params: GetUserByIdParams) {
     throw error;
   }
 }
+
 
 export async function getUserQuestions(params: GetUserStatsParams) {
   try {
@@ -346,6 +343,7 @@ export async function getUserQuestions(params: GetUserStatsParams) {
   }
 }
 
+
 export async function getUserAnswers(params: GetUserStatsParams) {
   try {
     connectToDatabase();
@@ -371,13 +369,3 @@ export async function getUserAnswers(params: GetUserStatsParams) {
     throw error;
   }
 }
-*/
-
-// export async function getAllUsers(params: GetAllUsersParams) {
-//   try {
-//     connectToDatabase();
-//   } catch (error) {
-//     console.log(error);
-//     throw error;
-//   }
-// }
