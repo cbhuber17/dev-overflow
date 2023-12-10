@@ -18,10 +18,9 @@ import { Button } from "../ui/button";
 import { QuestionsSchema } from "@/lib/validations";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-// import { createQuestion, editQuestion } from "@/lib/actions/question.action";
+import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
-import { createQuestion } from "@/lib/actions/question.action";
 
 interface Props {
   type?: string;
@@ -55,34 +54,32 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
   async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true);
 
-    // try {
-    //   if (type === "Edit") {
-    //     await editQuestion({
-    //       questionId: parsedQuestionDetails._id,
-    //       title: values.title,
-    //       content: values.explanation,
-    //       path: pathname,
-    //     });
+    try {
+      if (type === "Edit") {
+        await editQuestion({
+          questionId: parsedQuestionDetails._id,
+          title: values.title,
+          content: values.explanation,
+          path: pathname,
+        });
 
-    //     router.push(`/question/${parsedQuestionDetails._id}`);
-    //   } else {
-    await createQuestion({
-      title: values.title,
-      content: values.explanation,
-      tags: values.tags,
-      author: JSON.parse(mongoUserId),
-      path: pathname,
-    });
+        router.push(`/question/${parsedQuestionDetails._id}`);
+      } else {
+        await createQuestion({
+          title: values.title,
+          content: values.explanation,
+          tags: values.tags,
+          author: JSON.parse(mongoUserId),
+          path: pathname,
+        });
 
-    // Navigate to homepage
-    router.push("/");
-    //   }
-    // } catch (error) {
-    // } finally {
-    //   setIsSubmitting(false);
-    // }
-    // TODO: Remove
-    setIsSubmitting(false);
+        // Navigate to homepage
+        router.push("/");
+      }
+    } catch (error) {
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const handleInputKeyDown = (

@@ -6,7 +6,7 @@ import { connectToDatabase } from "../mongoose"
 import { CreateQuestionParams,
     GetQuestionsParams,
      DeleteQuestionParams,
-    // EditQuestionParams,
+    EditQuestionParams,
     GetQuestionByIdParams,
     // GetQuestionsParams,
     QuestionVoteParams,
@@ -242,7 +242,6 @@ export async function deleteQuestion(params: DeleteQuestionParams) {
   }
 }
 
-/*
 
 export async function editQuestion(params: EditQuestionParams) {
   try {
@@ -266,6 +265,8 @@ export async function editQuestion(params: EditQuestionParams) {
     console.log(error);
   }
 }
+
+/*
 
 export async function getHotQuestions() {
   try {
