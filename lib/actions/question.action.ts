@@ -266,7 +266,6 @@ export async function editQuestion(params: EditQuestionParams) {
   }
 }
 
-/*
 
 export async function getHotQuestions() {
   try {
@@ -282,6 +281,8 @@ export async function getHotQuestions() {
     throw error;
   }
 }
+
+/*
 
 export async function getRecommendedQuestions(params: RecommendedParams) {
   try {

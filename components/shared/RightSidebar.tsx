@@ -2,20 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RenderTag from "./RenderTag";
-// import { getHotQuestions } from "@/lib/actions/question.action";
+import { getHotQuestions } from "@/lib/actions/question.action";
 // import { getTopPopularTags } from "@/lib/actions/tag.actions";
-
-const hotQuestions = [
-  { _id: 1, title: "How do I express a customer server in NextJS?" },
-  { _id: 2, title: "Cascading Deletes in SQLAlchemy?" },
-  { _id: 3, title: "How to Perfectly Center a Div with Tailwind CSS?" },
-  {
-    _id: 4,
-    title:
-      "Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?",
-  },
-  { _id: 5, title: "Redux Toolkit Not Updating State as Expected" },
-];
 
 const popularTags = [
   { _id: "1", name: "Typescript", numberOfQuestions: 8 },
@@ -26,7 +14,7 @@ const popularTags = [
 ];
 
 const RightSidebar = async () => {
-  // const hotQuestions = await getHotQuestions();
+  const hotQuestions = await getHotQuestions();
   // const popularTags = await getTopPopularTags();
 
   return (
