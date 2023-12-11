@@ -2,9 +2,12 @@
 
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import React, { useState } from "react";
-import { useSearchParams } from "next/navigation";
-// import { formUrlQuery, removeKeysFromQuery } from '@/lib/utils'
+import React, { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+
+const DEBOUNCE_MS = 300;
 
 interface CustomInputProps {
   route: string;
@@ -21,40 +24,40 @@ const LocalSearchbar = ({
   placeholder,
   otherClasses,
 }: CustomInputProps) => {
-  //   const router = useRouter();
-  //   const pathname = usePathname();
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const query = searchParams.get("q");
 
   const [search, setSearch] = useState(query || "");
 
-  //   useEffect(() => {
-  //     const delayDebounceFn = setTimeout(() => {
-  //       if(search) {
-  //         const newUrl = formUrlQuery({
-  //           params: searchParams.toString(),
-  //           key: 'q',
-  //           value: search
-  //         })
+  useEffect(() => {
+    // Don't make a call to the db as were typing
+    const delayDebounceFn = setTimeout(() => {
+      if (search) {
+        const newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "q",
+          value: search,
+        });
 
-  //         router.push(newUrl, { scroll: false });
-  //       } else {
-  //         console.log(route, pathname)
-  //         if(pathname === route) {
-  //           const newUrl = removeKeysFromQuery({
-  //             params: searchParams.toString(),
-  //             keysToRemove: ['q']
-  //           })
+        router.push(newUrl, { scroll: false });
+      } else {
+        console.log(route, pathname);
+        if (pathname === route) {
+          const newUrl = removeKeysFromQuery({
+            params: searchParams.toString(),
+            keysToRemove: ["q"],
+          });
 
-  //           router.push(newUrl, { scroll: false });
-  //         }
+          router.push(newUrl, { scroll: false });
+        }
+      }
+    }, DEBOUNCE_MS);
 
-  //       }
-  //     }, 300);
-
-  //     return () => clearTimeout(delayDebounceFn)
-  //   }, [search, route, pathname, router, searchParams, query])
+    return () => clearTimeout(delayDebounceFn);
+  }, [search, route, pathname, router, searchParams, query]);
 
   return (
     <div
