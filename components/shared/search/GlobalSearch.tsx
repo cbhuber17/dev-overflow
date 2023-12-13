@@ -4,11 +4,14 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { usePathname, useSearchParams } from "next/navigation";
-// import { formUrlQuery, removeKeysFromQuery } from '@/lib/utils'
-// import GlobalResult from './GlobalResult'
+import { useRouter } from "next/router";
+import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
+import GlobalResult from "./GlobalResult";
+
+const DEBOUNCE_MS = 300;
 
 const GlobalSearch = () => {
-  //   const router = useRouter();
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchContainerRef = useRef(null);
@@ -39,31 +42,30 @@ const GlobalSearch = () => {
     };
   }, [pathname]);
 
-  //   useEffect(() => {
-  //     const delayDebounceFn = setTimeout(() => {
-  //       if(search) {
-  //         const newUrl = formUrlQuery({
-  //           params: searchParams.toString(),
-  //           key: 'global',
-  //           value: search
-  //         })
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (search) {
+        const newUrl = formUrlQuery({
+          params: searchParams.toString(),
+          key: "global",
+          value: search,
+        });
 
-  //         router.push(newUrl, { scroll: false });
-  //       } else {
-  //         if(query) {
-  //           const newUrl = removeKeysFromQuery({
-  //             params: searchParams.toString(),
-  //             keysToRemove: ['global', 'type']
-  //           })
+        router.push(newUrl, { scroll: false });
+      } else {
+        if (query) {
+          const newUrl = removeKeysFromQuery({
+            params: searchParams.toString(),
+            keysToRemove: ["global", "type"],
+          });
 
-  //           router.push(newUrl, { scroll: false });
-  //         }
+          router.push(newUrl, { scroll: false });
+        }
+      }
+    }, DEBOUNCE_MS);
 
-  //       }
-  //     }, 300);
-
-  //     return () => clearTimeout(delayDebounceFn)
-  //   }, [search, router, pathname, searchParams, query])
+    return () => clearTimeout(delayDebounceFn);
+  }, [search, router, pathname, searchParams, query]);
 
   return (
     <div
@@ -92,7 +94,7 @@ const GlobalSearch = () => {
           className="paragraph-regular no-focus placeholder text-dark400_light700 border-none bg-transparent shadow-none outline-none"
         />
       </div>
-      {/* {isOpen && <GlobalResult />} */}
+      {isOpen && <GlobalResult />}
     </div>
   );
 };
