@@ -3,8 +3,7 @@
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 
 const DEBOUNCE_MS = 300;
