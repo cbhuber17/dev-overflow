@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 
-const NavContent = () => {
+const NavContent = ({ userId }: { userId: String }) => {
   const pathname = usePathname();
 
   return (
@@ -23,7 +23,8 @@ const NavContent = () => {
           (pathname.includes(item.route) && item.route.length > 1) ||
           pathname === item.route;
 
-        // TODO: Profile from LeftSidebar.tsx, display only when logged in
+        // Display profile only when logged in (mobile view)
+        if (!userId && item.label === "Profile") return null;
 
         return (
           // asChild delegates the rendering of a component to its single child element.
@@ -55,7 +56,7 @@ const NavContent = () => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({ userId } : { userId: String }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -85,7 +86,7 @@ const MobileNav = () => {
         </Link>
         <div>
           <SheetClose asChild>
-            <NavContent />
+            <NavContent userId={userId} />
           </SheetClose>
 
           <SignedOut>
