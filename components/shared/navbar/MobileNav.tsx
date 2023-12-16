@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 
-const NavContent = ({ userId }: { userId: String }) => {
+const NavContent = ({ userId }: { userId: String | null }) => {
   const pathname = usePathname();
 
   return (
@@ -56,7 +56,7 @@ const NavContent = ({ userId }: { userId: String }) => {
   );
 };
 
-const MobileNav = ({ userId } : { userId: String }) => {
+const MobileNav = ({ userId }: { userId: String | null }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
